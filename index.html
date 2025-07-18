@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1: The 5-Minute Team Diagnostic | 360TFT Coach's Compass</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #000000;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 3px solid #976bdd;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .header-badge {
+            background: linear-gradient(135deg, #976bdd, #7c5bc4);
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        h1 {
+            color: #976bdd;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #000000;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .intro-section {
+            background: #e8d8d8;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 5px solid #976bdd;
+        }
+
+        .intro-section h2 {
+            color: #976bdd;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .intro-section p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .diagnostic-section {
+            margin-bottom: 40px;
+        }
+
+        .assessment-category {
+            background: #ffffff;
+            border: 2px solid #976bdd;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(151, 107, 221, 0.1);
+        }
+
+        .category-header {
+            background: #976bdd;
+            color: #ffffff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: -25px -25px 20px -25px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .assessment-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e8d8d8;
+        }
+
+        .assessment-item h4 {
+            color: #000000;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .assessment-item p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+
+        .rating-scale {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .rating-scale span {
+            font-weight: bold;
+            color: #976bdd;
+        }
+
+        .rating-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .rating-btn {
+            width: 35px;
+            height: 35px;
+            border: 2px solid #976bdd;
+            background: #ffffff;
+            color: #976bdd;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .rating-btn:hover {
+            background: #976bdd;
+            color: #ffffff;
+        }
+
+        .rating-btn.selected {
+            background: #976bdd;
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(151, 107, 221, 0.5);
+        }
+
+        .results-section {
+            background: linear-gradient(135deg, #976bdd, #7c5bc4);
+            color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            text-align: center;
+            display: none;
+        }
+
+        .results-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .score-display {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .score-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .score-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .score-label {
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .recommendation {
+            background: #ffffff;
+            color: #000000;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 5px solid #ff5757;
+        }
+
+        .recommendation h3 {
+            color: #976bdd;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .calculate-btn {
+            background: #ff5757;
+            color: #ffffff;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 30px auto;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .calculate-btn:hover {
+            background: #e64545;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(230, 69, 69, 0.3);
+        }
+
+        .kevin-insight {
+            background: #e8d8d8;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #976bdd;
+            margin: 30px 0;
+            font-style: italic;
+        }
+
+        .kevin-insight::before {
+            content: "💡 Kevin Middleton Insight:";
+            font-weight: bold;
+            color: #976bdd;
+            font-style: normal;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .next-step {
+            background: #976bdd;
+            color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .next-step h2 {
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            background: #ff5757;
+            color: #ffffff;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.2em;
+            display: inline-block;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #e64545;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 2px solid #e8d8d8;
+            margin-top: 50px;
+            color: #666;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: #976bdd;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .rating-scale {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .score-display {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <svg class="logo" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Football icon -->
+                <circle cx="100" cy="100" r="60" fill="#976bdd" stroke="#ffffff" stroke-width="3"/>
+                <path d="M40 100 L60 80 L80 100 L100 80 L120 100 L140 80 L160 100" 
+                      fill="none" stroke="#ffffff" stroke-width="3"/>
+                <path d="M100 40 L120 60 L100 80 L80 60 Z" fill="#ffffff"/>
+                <path d="M100 120 L120 140 L100 160 L80 140 Z" fill="#ffffff"/>
+                <!-- 360TFT text -->
+                <text x="200" y="80" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#000000">360TFT</text>
+                <text x="200" y="130" font-family="Arial, sans-serif" font-size="16" fill="#976bdd">Master The Game</text>
+            </svg>
+            
+            <div class="header-badge">The Coach's Compass: Day 1</div>
+            <h1>The 5-Minute Team Diagnostic</h1>
+            <p class="subtitle">"Instantly Identify Your Team's Biggest Weakness"</p>
+        </header>
+
+        <div class="intro-section">
+            <h2>The Reality Check</h2>
+            <p>Most coaches guess what's wrong with their team. Elite coaches know exactly where to start.</p>
+            <p>In 5 minutes, you'll have complete clarity on your team's biggest weakness and the exact training focus that will transform them fastest.</p>
+        </div>
+
+        <div class="diagnostic-section">
+            <div class="assessment-category">
+                <div class="category-header">Technical Assessment</div>
+                
+                <div class="assessment-item">
+                    <h4>Ball Control Under Pressure</h4>
+                    <p>Can players receive and turn in tight spaces? Do they panic when pressed? First touch quality under match conditions?</p>
+                    <div class="rating-scale">
+                        <span>Score (1-10):</span>
+                        <div class="rating-buttons" data-category="technical" data-item="ballcontrol">
+                            <button class="rating-btn" data-value="1">1</button>
+                            <button class="rating-btn" data-value="2">2</button>
+                            <button class="rating-btn" data-value="3">3</button>
+                            <button class="rating-btn" data-value="4">4</button>
+                            <button class="rating-btn" data-value="5">5</button>
+                            <button class="rating-btn" data-value="6">6</button>
+                            <button class="rating-btn" data-value="7">7</button>
+                            <button class="rating-btn" data-value="8">8</button>
+                            <button class="rating-btn" data-value="9">9</button>
+                            <button class="rating-btn" data-value="10">10</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="assessment-item">
+                    <h4>Passing Accuracy & Decision Making</h4>
+                    <p>Are they choosing the right pass? Timing of release? Weight and accuracy of passes?</p>
+                    <div class="rating-scale">
+                        <span>Score (1-10):</span>
+                        <div class="rating-buttons" data-category="technical" data-item="passing">
+                            <button class="rating-btn" data-value="1">1</button>
+                            <button class="rating-btn" data-value="2">2</button>
+                            <button class="rating-btn" data-value="3">3</button>
+                            <button class="rating-btn" data-value="4">4</button>
+                            <button class="rating-btn" data-value="5">5</button>
+                            <button class="rating-btn" data-value="6">6</button>
+                            <button class="rating-btn" data-value="7">7</button>
+                            <button class="rating-btn" data-value="8">8</button>
+                            <button class="rating-btn" data-value="9">9</button>
+                            <button class="rating-btn" data-value="10">10</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="assessment-item">
+                    <h4>Finishing Composure</h4>
+                    <p>Conversion rate in training vs matches? Decision making in the box? Technique under pressure?</p>
+                    <div class="rating-scale">
+                        <span>Score (1-10):</span>
+                        <div class="rating-buttons" data-category="technical" data-item="finishing">
+                            <button class="rating-btn" data-value="1">1</button>
+                            <button class="rating-btn" data-value="2">2</button>
+                            <button class="rating-btn" data-value="3">3</button>
+                            <button class="rating-btn" data-value="4">4</button>
+                            <button class="rating-btn" data-value="5">5</button>
+                            <button class="rating-btn" data-value="6">6</button>
+                            <button class="rating-btn" data-value="7">7</button>
+                            <button class="rating-btn" data-value="8">8</button>
+                            <button class="rating-btn" data-value="9">9</button>
+                            <button class="rating-btn" data-value="10">10</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="assessment-item">
+                    <h4>1v1 Situations</h4>
+                    <p>Attacking 1v1s - do they commit defenders? Defensive 1v1s - body position and timing? Confidence in individual battles?</p>
+                    <div class="rating-scale">
+                        <span>Score (1-10):</span>
+                        <div class="rating-buttons" data-category="technical" data-item="onevsone">
+                            <button class="rating-btn" data-value="1">1</button>
+                            <button class="rating-btn" data-value="2">2</button>
+                            <button class="rating-btn" data-value="3">3</button>
+                            <button class="rating-btn" data-value="4">4</button>
+                            <button class="rating-btn" data-value="5">5</button>
+                            <button class="rating-btn" data-value="6">6</button>
+                            <button class="rating-btn" data-value="7">7</button>
+                            <button class="rating-btn" data-value="8">8</button>
+                            <button class="rating-btn" data-value="9">9</button>
+                            <button class="rating-btn" data-value="10">10</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="assessment-category">
+                <div class="category-header">Tactical Assessment</div>
+                
+                <div class="assessment-item">
+                    <h4>Possession Retention</h4>
+                    <p>Do they understand when to keep vs when to release? Movement off the ball to support possession? Recognition of pressure situations?</p>
+                    <div class="rating-scale">
+                        <span>Score (1-10):</span>
+                        <div class="rating-buttons" data-category="tactical" data-item="possession">
+                            <button class="rating-btn" data-value="1">1</button>
+                            <button class="rating-btn" data-value="2">2</button>
+                            <button class="rating-btn" data-value="3">3</button>
+                            <button class="rating-btn" data-value="4">4</button>
+                            <button class="rating-btn" data-value="5">5</button>
+                            <button class="rating-btn" data-value="6">6</button>
+                            <button class="rating-btn" data-value="7">7</button>
+                            <button class="rating-btn" data-value="8">8</button>
+                            <button class="rating-btn" data-value="9">9</button>
+                            <button class="rating-btn" data-value="10">10</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="assessment-item">
+                    <h4>Defensive Organisation</h4>
+                    <p>Shape maintenance when out of possession? Pressing triggers and coordination? Communication and leadership?</p>
+                    <div class="rating-scale">
+                        <span>Score (1-10):</span>
+                        <div class="rating-buttons" data-category="tactical" data-item="defending">
+                            <button class="rating-btn" data-value="1">1</button>
+                            <button class="rating-btn" data-value="2">2</button>
+                            <button class="rating-btn" data-value="3">3</button>
+                            <button class="rating-btn" data-value="4">4</button>
+                            <button class="rating-btn" data-value="5">5</button>
+                            <button class="rating-btn" data-value="6">6</button>
+                            <button class="rating-btn" data-value="7">7</button>
+                            <button class="rating-btn" data-value="8">8</button>
+                            <button class="rating-btn" data-value="9">9</button>
+                            <button class="rating-btn" data-value="10">10</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="assessment-item">
+                    <h4>Transition Speed</h4>
+                    <p>How quickly do they switch from attack to defence? From defence to attack? Recognition of transition moments?</p>
+                    <div class="rating-scale">
+                        <span>Score (1-10):</span>
+                        <div class="rating-buttons" data-category="tactical" data-item="transitions">
+                            <button class="rating-btn" data-value="1">1</button>
+                            <button class="rating-btn" data-value="2">2</button>
+                            <button class="rating-btn" data-value="3">3</button>
+                            <button class="rating-btn" data-value="4">4</button>
+                            <button class="rating-btn" data-value="5">5</button>
+                            <button class="rating-btn" data-value="6">6</button>
+                            <button class="rating-btn" data-value="7">7</button>
+                            <button class="rating-btn" data-value="8">8</button>
+                            <button class="rating-btn" data-value="9">9</button>
+                            <button class="rating-btn" data-value="10">10</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="assessment-category">
+                <div class="category-header">Physical Assessment</div>
+                
+                <div class="assessment-item">
+                    <h4>Match Fitness</h4>
+                    <p>Can they maintain intensity for full game? Recovery between high-intensity moments? Energy levels in final 15 minutes?</p>
+                    <div class="rating-scale">
+                        <span>Score (1-10):</span>
+                        <div class="rating-buttons" data-category="physical" data-item="fitness">
+                            <button class="rating-btn" data-value="1">1</button>
+                            <button class="rating-btn" data-value="2">2</button>
+                            <button class="rating-btn" data-value="3">3</button>
+                            <button class="rating-btn" data-value="4">4</button>
+                            <button class="rating-btn" data-value="5">5</button>
+                            <button class="rating-btn" data-value="6">6</button>
+                            <button class="rating-btn" data-value="7">7</button>
+                            <button class="rating-btn" data-value="8">8</button>
+                            <button class="rating-btn" data-value="9">9</button>
+                            <button class="rating-btn" data-value="10">10</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="assessment-item">
+                    <h4>Strength in Duels</h4>
+                    <p>Winning aerial battles? Holding off challenges? Physical presence in key moments?</p>
+                    <div class="rating-scale">
+                        <span>Score (1-10):</span>
+                        <div class="rating-buttons" data-category="physical" data-item="strength">
+                            <button class="rating-btn" data-value="1">1</button>
+                            <button class="rating-btn" data-value="2">2</button>
+                            <button class="rating-btn" data-value="3">3</button>
+                            <button class="rating-btn" data-value="4">4</button>
+                            <button class="rating-btn" data-value="5">5</button>
+                            <button class="rating-btn" data-value="6">6</button>
+                            <button class="rating-btn" data-value="7">7</button>
+                            <button class="rating-btn" data-value="8">8</button>
+                            <button class="rating-btn" data-value="9">9</button>
+                            <button class="rating-btn" data-value="10">10</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="assessment-category">
+                <div class="category-header">Mental Assessment</div>
+                
+                <div class="assessment-item">
+                    <h4>Confidence Under Pressure</h4>
+                    <p>Do they hide when the game gets tough? Vocal leadership and encouragement? Body language when things go wrong?</p>
+                    <div class="rating-scale">
+                        <span>Score (1-10):</span>
+                        <div class="rating-buttons" data-category="mental" data-item="confidence">
+                            <button class="rating-btn" data-value="1">1</button>
+                            <button class="rating-btn" data-value="2">2</button>
+                            <button class="rating-btn" data-value="3">3</button>
+                            <button class="rating-btn" data-value="4">4</button>
+                            <button class="rating-btn" data-value="5">5</button>
+                            <button class="rating-btn" data-value="6">6</button>
+                            <button class="rating-btn" data-value="7">7</button>
+                            <button class="rating-btn" data-value="8">8</button>
+                            <button class="rating-btn" data-value="9">9</button>
+                            <button class="rating-btn" data-value="10">10</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="assessment-item">
+                    <h4>Concentration & Focus</h4>
+                    <p>Maintaining standards throughout session? Listening to instructions? Applying feedback immediately?</p>
+                    <div class="rating-scale">
+                        <span>Score (1-10):</span>
+                        <div class="rating-buttons" data-category="mental" data-item="concentration">
+                            <button class="rating-btn" data-value="1">1</button>
+                            <button class="rating-btn" data-value="2">2</button>
+                            <button class="rating-btn" data-value="3">3</button>
+                            <button class="rating-btn" data-value="4">4</button>
+                            <button class="rating-btn" data-value="5">5</button>
+                            <button class="rating-btn" data-value="6">6</button>
+                            <button class="rating-btn" data-value="7">7</button>
+                            <button class="rating-btn" data-value="8">8</button>
+                            <button class="rating-btn" data-value="9">9</button>
+                            <button class="rating-btn" data-value="10">10</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="calculate-btn" onclick="calculateResults()">Get My Team's Diagnosis</button>
+
+        <div class="results-section" id="results">
+            <h2>Your Team Diagnostic Results</h2>
+            
+            <div class="score-display">
+                <div class="score-item">
+                    <span class="score-number" id="technicalScore">0</span>
+                    <div class="score-label">Technical</div>
+                </div>
+                <div class="score-item">
+                    <span class="score-number" id="tacticalScore">0</span>
+                    <div class="score-label">Tactical</div>
+                </div>
+                <div class="score-item">
+                    <span class="score-number" id="physicalScore">0</span>
+                    <div class="score-label">Physical</div>
+                </div>
+                <div class="score-item">
+                    <span class="score-number" id="mentalScore">0</span>
+                    <div class="score-label">Mental</div>
+                </div>
+            </div>
+
+            <div class="recommendation" id="recommendation">
+                <!-- Recommendations will be inserted here -->
+            </div>
+        </div>
+
+        <div class="kevin-insight">
+            After 15+ years of coaching, I've learned that teams improve fastest when you focus on their weakest area first. But here's the key - you must build confidence while you build competence. Never expose a weakness without providing the tools to fix it.
+        </div>
+
+        <div class="next-step">
+            <h2>Your Next Step</h2>
+            <p>Tomorrow, you'll receive the Emergency Session Plans that directly target your team's lowest-scoring area. These are the same sessions I use when a team needs immediate improvement.</p>
+            <a href="https://www.360tft.com" class="cta-button">Get Day 2: Emergency Session Plans</a>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; 2025 360TFT - Master The Game</p>
+            <div class="social-links">
+                <a href="https://x.com/coach_kevin_m">Twitter</a>
+                <a href="https://www.360tft.com">Website</a>
+                <a href="https://www.skool.com/360tft-6754">Community</a>
+            </div>
+            <p>Helping coaches develop better players since 2010</p>
+        </footer>
+    </div>
+
+    <script>
+        // Rating button functionality
+        document.querySelectorAll('.rating-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove selected class from siblings
+                this.parentElement.querySelectorAll('.rating-btn').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked button
+                this.classList.add('selected');
+                
+                // Store the value
+                const category = this.parentElement.dataset.category;
+                const item = this.parentElement.dataset.item;
+                const value = this.dataset.value;
+                
+                // Store in data attribute for later calculation
+                this.parentElement.dataset.value = value;
+            });
+        });
+
+        function calculateResults() {
+            const categories = {
+                technical: [],
+                tactical: [],
+                physical: [],
+                mental: []
+            };
+
+            // Collect all ratings
+            document.querySelectorAll('.rating-buttons').forEach(buttonGroup => {
+                const category = buttonGroup.dataset.category;
+                const value = parseInt(buttonGroup.dataset.value);
+                
+                if (value && categories[category]) {
+                    categories[category].push(value);
+                }
+            });
+
+            // Check if all ratings are completed
+            const totalItems = document.querySelectorAll('.rating-buttons').length;
+            const completedItems = Object.values(categories).reduce((sum, arr) => sum + arr.length, 0);
+            
+            if (completedItems < totalItems) {
+                alert('Please complete all assessments before getting your results.');
+                return;
+            }
+
+            // Calculate averages
+            const scores = {};
+            for (const [category, values] of Object.entries(categories)) {
+                scores[category] = Math.round(values.reduce((sum, val) => sum + val, 0) / values.length);
+            }
+
+            // Display scores
+            document.getElementById('technicalScore').textContent = scores.technical;
+            document.getElementById('tacticalScore').textContent = scores.tactical;
+            document.getElementById('physicalScore').textContent = scores.physical;
+            document.getElementById('mentalScore').textContent = scores.mental;
+
+            // Find lowest scoring area
+            const lowestCategory = Object.entries(scores).reduce((min, [category, score]) => 
+                score < min[1] ? [category, score] : min
+            );
+
+            // Generate recommendation
+            const recommendations = {
+                technical: {
+                    title: "Immediate Focus: Ball Mastery and 1v1 Situations",
+                    content: `<p><strong>Next 7 Days:</strong></p>
+                    <ul>
+                        <li>Start every session with 10 minutes of ball mastery</li>
+                        <li>Focus on 1v1 attacking and defending drills</li>
+                        <li>Reduce pressure initially, build confidence</li>
+                    </ul>
+                    <p><strong>Recommended 360TFT Products:</strong> Ball Mastery Course & 1v1 Sessions</p>`
+                },
+                tactical: {
+                    title: "Immediate Focus: Small-Sided Games with Clear Outcomes",
+                    content: `<p><strong>Next 7 Days:</strong></p>
+                    <ul>
+                        <li>Use 4v2, 4v4+2 possession games</li>
+                        <li>Focus on one tactical principle per session</li>
+                        <li>Stop and coach moments of recognition</li>
+                    </ul>
+                    <p><strong>Recommended 360TFT Products:</strong> SSG Collection & Formation Guides</p>`
+                },
+                physical: {
+                    title: "Immediate Focus: Football-Specific Conditioning",
+                    content: `<p><strong>Next 7 Days:</strong></p>
+                    <ul>
+                        <li>Integrate running with ball work</li>
+                        <li>Use competitive drills that demand intensity</li>
+                        <li>Monitor work-to-rest ratios</li>
+                    </ul>
+                    <p><strong>Recommended 360TFT Products:</strong> Get Fit on The Pitch Programme</p>`
+                },
+                mental: {
+                    title: "Immediate Focus: Building Confidence Through Success",
+                    content: `<p><strong>Next 7 Days:</strong></p>
+                    <ul>
+                        <li>Start with exercises they can't fail at</li>
+                        <li>Celebrate every improvement loudly</li>
+                        <li>Set small, achievable daily targets</li>
+                    </ul>
+                    <p><strong>Recommended 360TFT Products:</strong> Team Identity & Pre-Season Materials</p>`
+                }
+            };
+
+            const recommendation = recommendations[lowestCategory[0]];
+            document.getElementById('recommendation').innerHTML = `
+                <h3>${recommendation.title}</h3>
+                ${recommendation.content}
+                <p style="margin-top: 20px; font-weight: bold; color: #976bdd;">
+                    Your team's lowest score: ${lowestCategory[0].charAt(0).toUpperCase() + lowestCategory[0].slice(1)} (${lowestCategory[1]}/10)
+                </p>
+            `;
+
+            // Show results section
+            document.getElementById('results').style.display = 'block';
+            
+            // Smooth scroll to results
+            document.getElementById('results').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Add some interactive enhancements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to assessment items
+            const assessmentItems = document.querySelectorAll('.assessment-item');
+            assessmentItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 4px 8px rgba(151, 107, 221, 0.15)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+
+            // Progress tracking
+            let completedAssessments = 0;
+            const totalAssessments = document.querySelectorAll('.rating-buttons').length;
+            
+            document.querySelectorAll('.rating-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const buttonGroup = this.parentElement;
+                    if (!buttonGroup.hasAttribute('data-completed')) {
+                        buttonGroup.setAttribute('data-completed', 'true');
+                        completedAssessments++;
+                        
+                        // Update progress indicator if you want to add one
+                        const progress = (completedAssessments / totalAssessments) * 100;
+                        
+                        // Show calculate button when all completed
+                        if (completedAssessments === totalAssessments) {
+                            const calculateBtn = document.querySelector('.calculate-btn');
+                            calculateBtn.style.background = '#976bdd';
+                            calculateBtn.textContent = 'Get My Team\'s Diagnosis ✓';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
