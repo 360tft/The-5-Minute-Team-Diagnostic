@@ -126,30 +126,34 @@
         .rating-scale {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             margin-top: 10px;
+            flex-wrap: wrap;
         }
 
         .rating-scale span {
             font-weight: bold;
             color: #976bdd;
+            white-space: nowrap;
         }
 
         .rating-buttons {
             display: flex;
-            gap: 5px;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
         .rating-btn {
-            width: 35px;
-            height: 35px;
+            padding: 8px 12px;
             border: 2px solid #976bdd;
             background: #ffffff;
             color: #976bdd;
-            border-radius: 50%;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s ease;
+            font-size: 12px;
+            white-space: nowrap;
         }
 
         .rating-btn:hover {
@@ -161,6 +165,60 @@
             background: #976bdd;
             color: #ffffff;
             box-shadow: 0 0 10px rgba(151, 107, 221, 0.5);
+        }
+
+        .rating-guide {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .rating-guide h3 {
+            color: #976bdd;
+            margin-bottom: 15px;
+        }
+
+        .rating-legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+
+        .rating-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            background: white;
+            border-radius: 5px;
+        }
+
+        .rating-range {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: white;
+            min-width: 180px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .rating-range.needs-improvement { background: #ff5757; }
+        .rating-range.average { background: #ffa500; }
+        .rating-range.good { background: #4CAF50; }
+        .rating-range.excellent { background: #976bdd; }
+
+        .assessment-examples {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+
+        .assessment-examples strong {
+            color: #976bdd;
         }
 
         .results-section {
@@ -195,10 +253,11 @@
             min-width: 200px;
         }
 
-        .score-number {
-            font-size: 2.5em;
+        .score-text {
+            font-size: 1.8em;
             font-weight: bold;
             display: block;
+            margin-bottom: 10px;
         }
 
         .score-label {
@@ -326,6 +385,16 @@
             .score-display {
                 flex-direction: column;
             }
+
+            .rating-buttons {
+                width: 100%;
+            }
+
+            .rating-btn {
+                flex: 1;
+                font-size: 11px;
+                padding: 6px 8px;
+            }
         }
     </style>
 </head>
@@ -348,20 +417,20 @@
                 <h3>Rating Scale Guide</h3>
                 <div class="rating-legend">
                     <div class="rating-item">
-                        <span class="rating-range poor">1-3</span>
-                        <span class="rating-label">Poor - Significant weakness, needs immediate attention</span>
+                        <span class="rating-range needs-improvement">Needs Vast Improvement</span>
+                        <span class="rating-label">Significant weakness, requires focused attention</span>
                     </div>
                     <div class="rating-item">
-                        <span class="rating-range average">4-6</span>
-                        <span class="rating-label">Average - Inconsistent performance, room for improvement</span>
+                        <span class="rating-range average">Average</span>
+                        <span class="rating-label">Typical for age group, some inconsistency</span>
                     </div>
                     <div class="rating-item">
-                        <span class="rating-range good">7-8</span>
-                        <span class="rating-label">Good - Solid performance with occasional lapses</span>
+                        <span class="rating-range good">Good</span>
+                        <span class="rating-label">Above average with occasional lapses</span>
                     </div>
                     <div class="rating-item">
-                        <span class="rating-range excellent">9-10</span>
-                        <span class="rating-label">Excellent - Consistent high performance under pressure</span>
+                        <span class="rating-range excellent">Excellent for the age group</span>
+                        <span class="rating-label">Outstanding performance under pressure</span>
                     </div>
                 </div>
             </div>
@@ -375,24 +444,18 @@
                     <h4>Ball Control Under Pressure</h4>
                     <p>Can players receive and turn in tight spaces? Do they panic when pressed? First touch quality under match conditions?</p>
                     <div class="assessment-examples">
-                        <strong>1-3:</strong> Players panic when pressed, heavy first touches, lose ball frequently under minimal pressure<br>
-                        <strong>4-6:</strong> Can handle some pressure but inconsistent, technique breaks down when rushed<br>
-                        <strong>7-8:</strong> Comfortable under pressure most of the time, occasional lapses<br>
-                        <strong>9-10:</strong> Calm under intense pressure, use pressure to create opportunities
+                        <strong>Needs Vast Improvement:</strong> Players panic when pressed, heavy first touches, lose ball frequently under minimal pressure<br>
+                        <strong>Average:</strong> Can handle some pressure but inconsistent, technique breaks down when rushed<br>
+                        <strong>Good:</strong> Comfortable under pressure most of the time, occasional lapses under intense pressure<br>
+                        <strong>Excellent for the age group:</strong> Calm under intense pressure, use pressure to create opportunities, exceptional for their age
                     </div>
                     <div class="rating-scale">
-                        <span>Score (1-10):</span>
+                        <span>Assessment:</span>
                         <div class="rating-buttons" data-category="technical" data-item="ballcontrol">
-                            <button class="rating-btn" data-value="1">1</button>
-                            <button class="rating-btn" data-value="2">2</button>
-                            <button class="rating-btn" data-value="3">3</button>
-                            <button class="rating-btn" data-value="4">4</button>
-                            <button class="rating-btn" data-value="5">5</button>
-                            <button class="rating-btn" data-value="6">6</button>
-                            <button class="rating-btn" data-value="7">7</button>
-                            <button class="rating-btn" data-value="8">8</button>
-                            <button class="rating-btn" data-value="9">9</button>
-                            <button class="rating-btn" data-value="10">10</button>
+                            <button class="rating-btn" data-value="1">Needs Vast Improvement</button>
+                            <button class="rating-btn" data-value="2">Average</button>
+                            <button class="rating-btn" data-value="3">Good</button>
+                            <button class="rating-btn" data-value="4">Excellent for the age group</button>
                         </div>
                     </div>
                 </div>
@@ -401,24 +464,18 @@
                     <h4>Passing Accuracy & Decision Making</h4>
                     <p>Are they choosing the right pass? Timing of release? Weight and accuracy of passes?</p>
                     <div class="assessment-examples">
-                        <strong>1-3:</strong> Poor pass selection, frequently gives ball away, can't find teammates<br>
-                        <strong>4-6:</strong> Decent passing but poor decisions under pressure, inconsistent weight<br>
-                        <strong>7-8:</strong> Good passing range and decision making, occasional poor choices<br>
-                        <strong>9-10:</strong> Excellent vision and execution, consistently finds best option available
+                        <strong>Needs Vast Improvement:</strong> Poor pass selection, frequently gives ball away, can't find teammates consistently<br>
+                        <strong>Average:</strong> Decent passing but poor decisions under pressure, inconsistent weight and timing<br>
+                        <strong>Good:</strong> Good passing range and decision making, occasional poor choices under intense pressure<br>
+                        <strong>Excellent for the age group:</strong> Exceptional vision and execution, consistently finds best option available, outstanding for their age
                     </div>
                     <div class="rating-scale">
-                        <span>Score (1-10):</span>
+                        <span>Assessment:</span>
                         <div class="rating-buttons" data-category="technical" data-item="passing">
-                            <button class="rating-btn" data-value="1">1</button>
-                            <button class="rating-btn" data-value="2">2</button>
-                            <button class="rating-btn" data-value="3">3</button>
-                            <button class="rating-btn" data-value="4">4</button>
-                            <button class="rating-btn" data-value="5">5</button>
-                            <button class="rating-btn" data-value="6">6</button>
-                            <button class="rating-btn" data-value="7">7</button>
-                            <button class="rating-btn" data-value="8">8</button>
-                            <button class="rating-btn" data-value="9">9</button>
-                            <button class="rating-btn" data-value="10">10</button>
+                            <button class="rating-btn" data-value="1">Needs Vast Improvement</button>
+                            <button class="rating-btn" data-value="2">Average</button>
+                            <button class="rating-btn" data-value="3">Good</button>
+                            <button class="rating-btn" data-value="4">Excellent for the age group</button>
                         </div>
                     </div>
                 </div>
@@ -427,24 +484,18 @@
                     <h4>Finishing Composure</h4>
                     <p>Conversion rate in training vs matches? Decision making in the box? Technique under pressure?</p>
                     <div class="assessment-examples">
-                        <strong>1-3:</strong> Miss easy chances, panic in box, much worse in matches than training<br>
-                        <strong>4-6:</strong> Score some goals but inconsistent, poor decisions when rushed<br>
-                        <strong>7-8:</strong> Clinical most of the time, occasional wayward efforts<br>
-                        <strong>9-10:</strong> Ice-cold finisher, better under pressure, pick corners consistently
+                        <strong>Needs Vast Improvement:</strong> Miss easy chances, panic in box, much worse in matches than training<br>
+                        <strong>Average:</strong> Score some goals but inconsistent, poor decisions when rushed, typical for age group<br>
+                        <strong>Good:</strong> Clinical most of the time, occasional wayward efforts under pressure<br>
+                        <strong>Excellent for the age group:</strong> Ice-cold finisher, better under pressure, pick corners consistently, exceptional composure for their age
                     </div>
                     <div class="rating-scale">
-                        <span>Score (1-10):</span>
+                        <span>Assessment:</span>
                         <div class="rating-buttons" data-category="technical" data-item="finishing">
-                            <button class="rating-btn" data-value="1">1</button>
-                            <button class="rating-btn" data-value="2">2</button>
-                            <button class="rating-btn" data-value="3">3</button>
-                            <button class="rating-btn" data-value="4">4</button>
-                            <button class="rating-btn" data-value="5">5</button>
-                            <button class="rating-btn" data-value="6">6</button>
-                            <button class="rating-btn" data-value="7">7</button>
-                            <button class="rating-btn" data-value="8">8</button>
-                            <button class="rating-btn" data-value="9">9</button>
-                            <button class="rating-btn" data-value="10">10</button>
+                            <button class="rating-btn" data-value="1">Needs Vast Improvement</button>
+                            <button class="rating-btn" data-value="2">Average</button>
+                            <button class="rating-btn" data-value="3">Good</button>
+                            <button class="rating-btn" data-value="4">Excellent for the age group</button>
                         </div>
                     </div>
                 </div>
@@ -453,24 +504,18 @@
                     <h4>1v1 Situations</h4>
                     <p>Attacking 1v1s - do they commit defenders? Defensive 1v1s - body position and timing? Confidence in individual battles?</p>
                      <div class="assessment-examples">
-                        <strong>1-3:</strong> Avoid 1v1s, lose most individual battles, poor body position<br>
-                        <strong>4-6:</strong> Win some battles but inconsistent, hesitant in key moments<br>
-                        <strong>7-8:</strong> Confident in 1v1s, good success rate, occasional mistakes<br>
-                        <strong>9-10:</strong> Dominant in individual battles, commit defenders, excellent positioning
+                        <strong>Needs Vast Improvement:</strong> Avoid 1v1s, lose most individual battles, poor body position and timing<br>
+                        <strong>Average:</strong> Win some battles but inconsistent, hesitant in key moments, typical success rate for age<br>
+                        <strong>Good:</strong> Confident in 1v1s, good success rate, occasional mistakes under pressure<br>
+                        <strong>Excellent for the age group:</strong> Dominant in individual battles, commit defenders, excellent positioning, outstanding for their age
                     </div>
                     <div class="rating-scale">
-                        <span>Score (1-10):</span>
+                        <span>Assessment:</span>
                         <div class="rating-buttons" data-category="technical" data-item="onevsone">
-                            <button class="rating-btn" data-value="1">1</button>
-                            <button class="rating-btn" data-value="2">2</button>
-                            <button class="rating-btn" data-value="3">3</button>
-                            <button class="rating-btn" data-value="4">4</button>
-                            <button class="rating-btn" data-value="5">5</button>
-                            <button class="rating-btn" data-value="6">6</button>
-                            <button class="rating-btn" data-value="7">7</button>
-                            <button class="rating-btn" data-value="8">8</button>
-                            <button class="rating-btn" data-value="9">9</button>
-                            <button class="rating-btn" data-value="10">10</button>
+                            <button class="rating-btn" data-value="1">Needs Vast Improvement</button>
+                            <button class="rating-btn" data-value="2">Average</button>
+                            <button class="rating-btn" data-value="3">Good</button>
+                            <button class="rating-btn" data-value="4">Excellent for the age group</button>
                         </div>
                     </div>
                 </div>
@@ -483,24 +528,18 @@
                     <h4>Possession Retention</h4>
                     <p>Do they understand when to keep vs when to release? Movement off the ball to support possession? Recognition of pressure situations?</p>
                     <div class="assessment-examples">
-                        <strong>1-3:</strong> Constantly lose possession, no movement to help teammates, panic under pressure<br>
-                        <strong>4-6:</strong> Keep ball reasonably well but poor game understanding, inconsistent support<br>
-                        <strong>7-8:</strong> Good possession play, understand when to release, mostly good movement<br>
-                        <strong>9-10:</strong> Excellent possession intelligence, create space, always available for passes
+                        <strong>Needs Vast Improvement:</strong> Constantly lose possession, no movement to help teammates, panic under pressure<br>
+                        <strong>Average:</strong> Keep ball reasonably well but poor game understanding, inconsistent support, typical for age<br>
+                        <strong>Good:</strong> Good possession play, understand when to release, mostly good movement and support<br>
+                        <strong>Excellent for the age group:</strong> Exceptional possession intelligence, create space, always available for passes, outstanding game understanding for their age
                     </div>
                     <div class="rating-scale">
-                        <span>Score (1-10):</span>
+                        <span>Assessment:</span>
                         <div class="rating-buttons" data-category="tactical" data-item="possession">
-                            <button class="rating-btn" data-value="1">1</button>
-                            <button class="rating-btn" data-value="2">2</button>
-                            <button class="rating-btn" data-value="3">3</button>
-                            <button class="rating-btn" data-value="4">4</button>
-                            <button class="rating-btn" data-value="5">5</button>
-                            <button class="rating-btn" data-value="6">6</button>
-                            <button class="rating-btn" data-value="7">7</button>
-                            <button class="rating-btn" data-value="8">8</button>
-                            <button class="rating-btn" data-value="9">9</button>
-                            <button class="rating-btn" data-value="10">10</button>
+                            <button class="rating-btn" data-value="1">Needs Vast Improvement</button>
+                            <button class="rating-btn" data-value="2">Average</button>
+                            <button class="rating-btn" data-value="3">Good</button>
+                            <button class="rating-btn" data-value="4">Excellent for the age group</button>
                         </div>
                     </div>
                 </div>
@@ -509,24 +548,18 @@
                     <h4>Defensive Organisation</h4>
                     <p>Shape maintenance when out of possession? Pressing triggers and coordination? Communication and leadership?</p>
                     <div class="assessment-examples">
-                        <strong>1-3:</strong> No shape, players chase ball, no communication or coordination<br>
-                        <strong>4-6:</strong> Some defensive structure but breaks down under pressure, limited talking<br>
-                        <strong>7-8:</strong> Good defensive shape most of the time, decent communication<br>
-                        <strong>9-10:</strong> Excellent organisation, coordinated pressing, constant communication
+                        <strong>Needs Vast Improvement:</strong> No shape, players chase ball, no communication or coordination<br>
+                        <strong>Average:</strong> Some defensive structure but breaks down under pressure, limited talking, typical for age<br>
+                        <strong>Good:</strong> Good defensive shape most of the time, decent communication and pressing coordination<br>
+                        <strong>Excellent for the age group:</strong> Outstanding organisation, coordinated pressing, constant communication, exceptional defensive maturity for their age
                     </div>
                     <div class="rating-scale">
-                        <span>Score (1-10):</span>
+                        <span>Assessment:</span>
                         <div class="rating-buttons" data-category="tactical" data-item="defending">
-                            <button class="rating-btn" data-value="1">1</button>
-                            <button class="rating-btn" data-value="2">2</button>
-                            <button class="rating-btn" data-value="3">3</button>
-                            <button class="rating-btn" data-value="4">4</button>
-                            <button class="rating-btn" data-value="5">5</button>
-                            <button class="rating-btn" data-value="6">6</button>
-                            <button class="rating-btn" data-value="7">7</button>
-                            <button class="rating-btn" data-value="8">8</button>
-                            <button class="rating-btn" data-value="9">9</button>
-                            <button class="rating-btn" data-value="10">10</button>
+                            <button class="rating-btn" data-value="1">Needs Vast Improvement</button>
+                            <button class="rating-btn" data-value="2">Average</button>
+                            <button class="rating-btn" data-value="3">Good</button>
+                            <button class="rating-btn" data-value="4">Excellent for the age group</button>
                         </div>
                     </div>
                 </div>
@@ -535,24 +568,18 @@
                     <h4>Transition Speed</h4>
                     <p>How quickly do they switch from attack to defence? From defence to attack? Recognition of transition moments?</p>
                     <div class="assessment-examples">
-                        <strong>1-3:</strong> Slow to react to possession changes, no urgency in transitions<br>
-                        <strong>4-6:</strong> Eventually adjust but takes time, limited transition awareness<br>
-                        <strong>7-8:</strong> Quick transitions most of the time, good game awareness<br>
-                        <strong>9-10:</strong> Instant reaction to possession changes, exploit transition moments
+                        <strong>Needs Vast Improvement:</strong> Slow to react to possession changes, no urgency in transitions<br>
+                        <strong>Average:</strong> Eventually adjust but takes time, limited transition awareness, typical reaction speed for age<br>
+                        <strong>Good:</strong> Quick transitions most of the time, good game awareness and reaction speed<br>
+                        <strong>Excellent for the age group:</strong> Instant reaction to possession changes, exploit transition moments, exceptional game intelligence for their age
                     </div>
                     <div class="rating-scale">
-                        <span>Score (1-10):</span>
+                        <span>Assessment:</span>
                         <div class="rating-buttons" data-category="tactical" data-item="transitions">
-                            <button class="rating-btn" data-value="1">1</button>
-                            <button class="rating-btn" data-value="2">2</button>
-                            <button class="rating-btn" data-value="3">3</button>
-                            <button class="rating-btn" data-value="4">4</button>
-                            <button class="rating-btn" data-value="5">5</button>
-                            <button class="rating-btn" data-value="6">6</button>
-                            <button class="rating-btn" data-value="7">7</button>
-                            <button class="rating-btn" data-value="8">8</button>
-                            <button class="rating-btn" data-value="9">9</button>
-                            <button class="rating-btn" data-value="10">10</button>
+                            <button class="rating-btn" data-value="1">Needs Vast Improvement</button>
+                            <button class="rating-btn" data-value="2">Average</button>
+                            <button class="rating-btn" data-value="3">Good</button>
+                            <button class="rating-btn" data-value="4">Excellent for the age group</button>
                         </div>
                     </div>
                 </div>
@@ -565,24 +592,18 @@
                     <h4>Match Fitness</h4>
                     <p>Can they maintain intensity for full game? Recovery between high-intensity moments? Energy levels in final 15 minutes?</p>
                      <div class="assessment-examples">
-                        <strong>1-3:</strong> Tired after 20 minutes, can't maintain intensity, poor recovery<br>
-                        <strong>4-6:</strong> Decent fitness but drops off in second half, slower recovery<br>
-                        <strong>7-8:</strong> Good endurance, maintain standards for most of game<br>
-                        <strong>9-10:</strong> Excellent fitness, same intensity throughout, quick recovery
+                        <strong>Needs Vast Improvement:</strong> Tired after 20 minutes, can't maintain intensity, poor recovery between efforts<br>
+                        <strong>Average:</strong> Decent fitness but drops off in second half, slower recovery, typical stamina for age<br>
+                        <strong>Good:</strong> Good endurance, maintain standards for most of game, decent recovery<br>
+                        <strong>Excellent for the age group:</strong> Outstanding fitness, same intensity throughout, quick recovery, exceptional stamina for their age
                     </div>
                     <div class="rating-scale">
-                        <span>Score (1-10):</span>
+                        <span>Assessment:</span>
                         <div class="rating-buttons" data-category="physical" data-item="fitness">
-                            <button class="rating-btn" data-value="1">1</button>
-                            <button class="rating-btn" data-value="2">2</button>
-                            <button class="rating-btn" data-value="3">3</button>
-                            <button class="rating-btn" data-value="4">4</button>
-                            <button class="rating-btn" data-value="5">5</button>
-                            <button class="rating-btn" data-value="6">6</button>
-                            <button class="rating-btn" data-value="7">7</button>
-                            <button class="rating-btn" data-value="8">8</button>
-                            <button class="rating-btn" data-value="9">9</button>
-                            <button class="rating-btn" data-value="10">10</button>
+                            <button class="rating-btn" data-value="1">Needs Vast Improvement</button>
+                            <button class="rating-btn" data-value="2">Average</button>
+                            <button class="rating-btn" data-value="3">Good</button>
+                            <button class="rating-btn" data-value="4">Excellent for the age group</button>
                         </div>
                     </div>
                 </div>
@@ -591,24 +612,18 @@
                     <h4>Strength in Duels</h4>
                     <p>Winning aerial battles? Holding off challenges? Physical presence in key moments?</p>
                     <div class="assessment-examples">
-                        <strong>1-3:</strong> Lose most physical battles, avoid contact, weak in duels<br>
-                        <strong>4-6:</strong> Win some duels but inconsistent, struggle against stronger opponents<br>
-                        <strong>7-8:</strong> Good physical presence, win most battles, compete well<br>
-                        <strong>9-10:</strong> Dominant in physical duels, use strength effectively, intimidating presence
+                        <strong>Needs Vast Improvement:</strong> Lose most physical battles, avoid contact, weak in duels<br>
+                        <strong>Average:</strong> Win some duels but inconsistent, struggle against stronger opponents, typical strength for age<br>
+                        <strong>Good:</strong> Good physical presence, win most battles, compete well in physical situations<br>
+                        <strong>Excellent for the age group:</strong> Dominant in physical duels, use strength effectively, intimidating presence, exceptional physicality for their age
                     </div>
                     <div class="rating-scale">
-                        <span>Score (1-10):</span>
+                        <span>Assessment:</span>
                         <div class="rating-buttons" data-category="physical" data-item="strength">
-                            <button class="rating-btn" data-value="1">1</button>
-                            <button class="rating-btn" data-value="2">2</button>
-                            <button class="rating-btn" data-value="3">3</button>
-                            <button class="rating-btn" data-value="4">4</button>
-                            <button class="rating-btn" data-value="5">5</button>
-                            <button class="rating-btn" data-value="6">6</button>
-                            <button class="rating-btn" data-value="7">7</button>
-                            <button class="rating-btn" data-value="8">8</button>
-                            <button class="rating-btn" data-value="9">9</button>
-                            <button class="rating-btn" data-value="10">10</button>
+                            <button class="rating-btn" data-value="1">Needs Vast Improvement</button>
+                            <button class="rating-btn" data-value="2">Average</button>
+                            <button class="rating-btn" data-value="3">Good</button>
+                            <button class="rating-btn" data-value="4">Excellent for the age group</button>
                         </div>
                     </div>
                 </div>
@@ -621,24 +636,18 @@
                     <h4>Confidence Under Pressure</h4>
                     <p>Do they hide when the game gets tough? Vocal leadership and encouragement? Body language when things go wrong?</p>
                     <div class="assessment-examples">
-                        <strong>1-3:</strong> Hide when pressure builds, negative body language, blame others<br>
-                        <strong>4-6:</strong> Some confidence but drops when things go wrong, limited leadership<br>
-                        <strong>7-8:</strong> Generally confident, good body language, encourage teammates<br>
-                        <strong>9-10:</strong> Thrive under pressure, excellent leadership, lift others when struggling
+                        <strong>Needs Vast Improvement:</strong> Hide when pressure builds, negative body language, blame others<br>
+                        <strong>Average:</strong> Some confidence but drops when things go wrong, limited leadership, typical resilience for age<br>
+                        <strong>Good:</strong> Generally confident, good body language, encourage teammates, handle pressure well<br>
+                        <strong>Excellent for the age group:</strong> Thrive under pressure, exceptional leadership, lift others when struggling, outstanding mental strength for their age
                     </div>
                     <div class="rating-scale">
-                        <span>Score (1-10):</span>
+                        <span>Assessment:</span>
                         <div class="rating-buttons" data-category="mental" data-item="confidence">
-                            <button class="rating-btn" data-value="1">1</button>
-                            <button class="rating-btn" data-value="2">2</button>
-                            <button class="rating-btn" data-value="3">3</button>
-                            <button class="rating-btn" data-value="4">4</button>
-                            <button class="rating-btn" data-value="5">5</button>
-                            <button class="rating-btn" data-value="6">6</button>
-                            <button class="rating-btn" data-value="7">7</button>
-                            <button class="rating-btn" data-value="8">8</button>
-                            <button class="rating-btn" data-value="9">9</button>
-                            <button class="rating-btn" data-value="10">10</button>
+                            <button class="rating-btn" data-value="1">Needs Vast Improvement</button>
+                            <button class="rating-btn" data-value="2">Average</button>
+                            <button class="rating-btn" data-value="3">Good</button>
+                            <button class="rating-btn" data-value="4">Excellent for the age group</button>
                         </div>
                     </div>
                 </div>
@@ -647,24 +656,18 @@
                     <h4>Concentration & Focus</h4>
                     <p>Maintaining standards throughout session? Listening to instructions? Applying feedback immediately?</p>
                     <div class="assessment-examples">
-                        <strong>1-3:</strong> Easily distracted, don't listen to instructions, repeat same mistakes<br>
-                        <strong>4-6:</strong> Decent focus but lapses, slow to apply feedback, inconsistent attention<br>
-                        <strong>7-8:</strong> Good concentration, listen well, usually apply coaching points<br>
-                        <strong>9-10:</strong> Exceptional focus, immediate application of feedback, maintain standards throughout
+                        <strong>Needs Vast Improvement:</strong> Easily distracted, don't listen to instructions, repeat same mistakes<br>
+                        <strong>Average:</strong> Decent focus but lapses, slow to apply feedback, inconsistent attention, typical for age<br>
+                        <strong>Good:</strong> Good concentration, listen well, usually apply coaching points, maintain focus<br>
+                        <strong>Excellent for the age group:</strong> Exceptional focus, immediate application of feedback, maintain standards throughout, outstanding concentration for their age
                     </div>
                     <div class="rating-scale">
-                        <span>Score (1-10):</span>
+                        <span>Assessment:</span>
                         <div class="rating-buttons" data-category="mental" data-item="concentration">
-                            <button class="rating-btn" data-value="1">1</button>
-                            <button class="rating-btn" data-value="2">2</button>
-                            <button class="rating-btn" data-value="3">3</button>
-                            <button class="rating-btn" data-value="4">4</button>
-                            <button class="rating-btn" data-value="5">5</button>
-                            <button class="rating-btn" data-value="6">6</button>
-                            <button class="rating-btn" data-value="7">7</button>
-                            <button class="rating-btn" data-value="8">8</button>
-                            <button class="rating-btn" data-value="9">9</button>
-                            <button class="rating-btn" data-value="10">10</button>
+                            <button class="rating-btn" data-value="1">Needs Vast Improvement</button>
+                            <button class="rating-btn" data-value="2">Average</button>
+                            <button class="rating-btn" data-value="3">Good</button>
+                            <button class="rating-btn" data-value="4">Excellent for the age group</button>
                         </div>
                     </div>
                 </div>
@@ -678,19 +681,19 @@
             
             <div class="score-display">
                 <div class="score-item">
-                    <span class="score-number" id="technicalScore">0</span>
+                    <span class="score-text" id="technicalScore">-</span>
                     <div class="score-label">Technical</div>
                 </div>
                 <div class="score-item">
-                    <span class="score-number" id="tacticalScore">0</span>
+                    <span class="score-text" id="tacticalScore">-</span>
                     <div class="score-label">Tactical</div>
                 </div>
                 <div class="score-item">
-                    <span class="score-number" id="physicalScore">0</span>
+                    <span class="score-text" id="physicalScore">-</span>
                     <div class="score-label">Physical</div>
                 </div>
                 <div class="score-item">
-                    <span class="score-number" id="mentalScore">0</span>
+                    <span class="score-text" id="mentalScore">-</span>
                     <div class="score-label">Mental</div>
                 </div>
             </div>
@@ -701,15 +704,14 @@
         </div>
 
         <div class="kevin-insight">
-            After 15+ years of coaching, I've learned that teams improve fastest when you focus on <a href="https://360tft.com/l/360TFTGM">long term development</a>. But here's the key, you must build confidence while you build competence. Never expose a weakness without providing the tools to fix it.   Use the advice given to help your team in the long and short term.
+            After 15+ years of coaching, I've learned that teams improve fastest when you focus on <a href="https://360tft.com/l/360TFTGM" target="blank">long term development</a>. But here's the key, you must build confidence while you build competence. Never expose a weakness without providing the tools to fix it. Use the advice given to help your team in the long and short term.
         </div>
 
         <div class="next-step">
-            <h2>Your Next Step</h2>
-            <p>Tomorrow, you'll receive the Emergency Session Plans that directly target your team's lowest-scoring area. These are the same sessions I use when a team needs immediate improvement.</p>
-            <a href="https://www.360tft.com" class="cta-button">Get Day 2: Emergency Session Plans</a>
+            <h2>Coming Soon</h2>
+            <p>Emergency Session Plans that directly target your team's lowest-scoring area. These will be the same sessions I use when a team needs immediate improvement.</p>
         </div>
-
+        
         <footer class="footer">
             <p>&copy; 2025 360TFT - Master The Game</p>
             <div class="social-links">
@@ -722,6 +724,13 @@
     </div>
 
     <script>
+        const scoreLabels = {
+            1: "Needs Vast Improvement",
+            2: "Average", 
+            3: "Good",
+            4: "Excellent for the age group"
+        };
+
         // Rating button functionality
         document.querySelectorAll('.rating-btn').forEach(button => {
             button.addEventListener('click', function() {
@@ -740,8 +749,27 @@
                 
                 // Store in data attribute for later calculation
                 this.parentElement.dataset.value = value;
+                
+                // Update button state for better UX
+                updateCalculateButton();
             });
         });
+
+        function updateCalculateButton() {
+            const totalItems = document.querySelectorAll('.rating-buttons').length;
+            const completedItems = document.querySelectorAll('.rating-buttons[data-value]').length;
+            const calculateBtn = document.querySelector('.calculate-btn');
+            
+            if (completedItems === totalItems) {
+                calculateBtn.style.background = '#976bdd';
+                calculateBtn.textContent = 'Get My Team\'s Diagnosis ✓';
+                calculateBtn.style.opacity = '1';
+            } else {
+                calculateBtn.style.background = '#ff5757';
+                calculateBtn.textContent = `Complete Assessment (${completedItems}/${totalItems})`;
+                calculateBtn.style.opacity = '0.8';
+            }
+        }
 
         function calculateResults() {
             const categories = {
@@ -766,21 +794,43 @@
             const completedItems = Object.values(categories).reduce((sum, arr) => sum + arr.length, 0);
             
             if (completedItems < totalItems) {
-                alert('Please complete all assessments before getting your results.');
+                // Show friendly error message
+                const missingCount = totalItems - completedItems;
+                alert(`Please complete all ${totalItems} assessments before getting your results.\n\nYou still need to assess ${missingCount} more area${missingCount > 1 ? 's' : ''}.`);
+                
+                // Scroll to first incomplete assessment
+                const firstIncomplete = document.querySelector('.rating-buttons:not([data-value])');
+                if (firstIncomplete) {
+                    firstIncomplete.closest('.assessment-item').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                    // Add highlight effect
+                    const item = firstIncomplete.closest('.assessment-item');
+                    item.style.border = '2px solid #ff5757';
+                    item.style.backgroundColor = '#fff5f5';
+                    setTimeout(() => {
+                        item.style.border = '1px solid #e8d8d8';
+                        item.style.backgroundColor = '';
+                    }, 3000);
+                }
                 return;
             }
 
-            // Calculate averages
+            // Calculate averages (convert to comparable scale)
             const scores = {};
+            const scoreTexts = {};
             for (const [category, values] of Object.entries(categories)) {
-                scores[category] = Math.round(values.reduce((sum, val) => sum + val, 0) / values.length);
+                const avg = values.reduce((sum, val) => sum + val, 0) / values.length;
+                scores[category] = Math.round(avg);
+                scoreTexts[category] = scoreLabels[scores[category]];
             }
 
             // Display scores
-            document.getElementById('technicalScore').textContent = scores.technical;
-            document.getElementById('tacticalScore').textContent = scores.tactical;
-            document.getElementById('physicalScore').textContent = scores.physical;
-            document.getElementById('mentalScore').textContent = scores.mental;
+            document.getElementById('technicalScore').textContent = scoreTexts.technical;
+            document.getElementById('tacticalScore').textContent = scoreTexts.tactical;
+            document.getElementById('physicalScore').textContent = scoreTexts.physical;
+            document.getElementById('mentalScore').textContent = scoreTexts.mental;
 
             // Find lowest scoring area
             const lowestCategory = Object.entries(scores).reduce((min, [category, score]) => 
@@ -793,11 +843,11 @@
                     title: "Immediate Focus: Ball Mastery and 1v1 Situations",
                     content: `<p><strong>Next 7 Days:</strong></p>
                     <ul>
-                        <li><a href="https://360tft.com/l/SSGPossessionRondoSessions" target="blank">Start every session with 10 minutes of ball mastery</a></li>
-                        <li><a href="https://360tft.com/l/SSGPossessionRondoSessions" target="blank">Focus on 1v1 attacking and defending drills</a></li>
+                        <li><a href="https://360tft.com/l/BallMasterySessions" target="blank">Start every session with 10 minutes of ball mastery</a></li>
+                        <li><a href="https://360tft.com/l/Essential1v1Sessions" target="blank">Focus on 1v1 attacking and defending drills</a></li>
                         <li>Reduce pressure initially, build confidence</li>
                     </ul>
-                    <p><strong>Recommended 360TFT Products:</strong> <a href="https://360tft.com/l/SSGPossessionRondoSessions" target="blank">Ball Mastery Course</a> & <a href="https://360tft.com/l/SSGPossessionRondoSessions" target="blank">1v1 Sessions</a></p>`
+                    <p><strong>Recommended 360TFT Products:</strong> <a href="https://360tft.com/l/BallMasterySessions" target="blank">Ball Mastery Course</a> & <a href="https://360tft.com/l/Essential1v1Sessions" target="blank">1v1 Sessions</a></p>`
                 },
                 tactical: {
                     title: "Immediate Focus: Small-Sided Games with Clear Outcomes",
@@ -805,7 +855,7 @@
                     <ul>
                         <li><a href="https://360tft.com/l/SSGPossessionRondoSessions" target="blank">Use 4v2, 4v4+2 possession games</a></li>
                         <li><a href="https://360tft.com/l/360TFTGM" target="blank">Focus on one tactical principle per session</a></li>
-                        <li>Stop and coach moments of recognition.  Play and Praise are your best approaches</li>
+                        <li>Stop and coach moments of recognition. Play and Praise are your best approaches</li>
                     </ul>
                     <p><strong>Recommended 360TFT Products:</strong> <a href="https://360tft.com/l/SSGPossessionRondoSessions" target="blank">SSG Collection</a> & <a href="https://360tft.com/l/CoachingCheatsheetVault" target="blank">Formation Guides</a></p>`
                 },
@@ -823,9 +873,9 @@
                     title: "Immediate Focus: Building Confidence Through Success",
                     content: `<p><strong>Next 7 Days:</strong></p>
                     <ul>
-                          <li><a href="https://360tft.com/l/TrainingSessionsForAllAges" target="blank">Start with exercises they can't fail at</a></li>
+                        <li><a href="https://360tft.com/l/TrainingSessionsForAllAges" target="blank">Start with exercises they can't fail at</a></li>
                         <li>Celebrate every improvement loudly</li>
-                        <li>Set small, achievable weekely targets</li>
+                        <li>Set small, achievable weekly targets</li>
                     </ul>
                     <p><strong>Recommended 360TFT Products:</strong> <a href="https://www.skool.com/coachingacademy" target="blank">Team Identity & Pre-Season Materials</a></p>`
                 }
@@ -836,7 +886,7 @@
                 <h3>${recommendation.title}</h3>
                 ${recommendation.content}
                 <p style="margin-top: 20px; font-weight: bold; color: #976bdd;">
-                    Your team's lowest score: ${lowestCategory[0].charAt(0).toUpperCase() + lowestCategory[0].slice(1)} (${lowestCategory[1]}/10)
+                    Your team's lowest assessment: ${lowestCategory[0].charAt(0).toUpperCase() + lowestCategory[0].slice(1)} (${scoreLabels[lowestCategory[1]]})
                 </p>
             `;
 
@@ -852,6 +902,9 @@
 
         // Add some interactive enhancements
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize button state
+            updateCalculateButton();
+            
             // Add hover effects to assessment items
             const assessmentItems = document.querySelectorAll('.assessment-item');
             assessmentItems.forEach(item => {
@@ -866,31 +919,4 @@
                     this.style.boxShadow = 'none';
                 });
             });
-
-            // Progress tracking
-            let completedAssessments = 0;
-            const totalAssessments = document.querySelectorAll('.rating-buttons').length;
-            
-            document.querySelectorAll('.rating-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const buttonGroup = this.parentElement;
-                    if (!buttonGroup.hasAttribute('data-completed')) {
-                        buttonGroup.setAttribute('data-completed', 'true');
-                        completedAssessments++;
-                        
-                        // Update progress indicator if you want to add one
-                        const progress = (completedAssessments / totalAssessments) * 100;
-                        
-                        // Show calculate button when all completed
-                        if (completedAssessments === totalAssessments) {
-                            const calculateBtn = document.querySelector('.calculate-btn');
-                            calculateBtn.style.background = '#976bdd';
-                            calculateBtn.textContent = 'Get My Team\'s Diagnosis ✓';
-                        }
-                    }
-                });
-            });
         });
-    </script>
-</body>
-</html>
