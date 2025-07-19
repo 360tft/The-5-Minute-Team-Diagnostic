@@ -674,7 +674,7 @@
             </div>
         </div>
 
-        <button class="calculate-btn" onclick="calculateResults()">Get My Team's Diagnosis</button>
+        <button class="calculate-btn" id="calculateBtn">Get My Team's Diagnosis</button>
 
         <div class="results-section" id="results">
             <h2>Your Team Diagnostic Results</h2>
@@ -904,6 +904,9 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize button state
             updateCalculateButton();
+            
+            // Add click event to calculate button
+            document.getElementById('calculateBtn').addEventListener('click', calculateResults);
             
             // Add hover effects to assessment items
             const assessmentItems = document.querySelectorAll('.assessment-item');
